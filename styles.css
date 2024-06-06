@@ -3,7 +3,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 html {
@@ -13,15 +13,15 @@ html {
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: rgba(115, 66, 214, 0.1);
 }
 
-nav {
-  height: 80px;
+ul {
   display: flex;
 }
 
-img {
-  width: 100%;
+li {
+  list-style-type: none;
 }
 
 p {
@@ -32,22 +32,8 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-
-
-ul {
-  display: flex;
-}
-
-li {
-  list-style-type: none;
-}
-
 h1 {
-  font-size: 56px;
+  font-size: 48px;
   color: #7342d6;
   margin-bottom: 24px;
   text-align: center;
@@ -59,6 +45,25 @@ h2 {
   text-align: center;
 }
 
+.btn {
+  background-color: #7342d6;
+  color: white;
+  padding: 12px 24px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  max-height: 50vh;
+}
+
 button {
   cursor: pointer;
 }
@@ -67,21 +72,44 @@ button:active {
   transform: translateY(1px);
 }
 
-.btn {
-  background-color: #7342d6;
-  color: white;
-  padding: 12px 24px;
-  font-size: 20px;
-  border-radius: 4px;
-  border: none;
+#landing {
+  background-color: rgba(115, 66, 214, 0.1);
 }
 
-.purple {
+.text--purple {
   color: #7342d6;
 }
 
-.logo {
-  width: 160px;
+.container {
+  padding: 56px 0;
+}
+
+.row{
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.row__column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-cursor {
+  cursor: not-allowed;
+}
+
+
+/* 
+
+NAVIGATION 
+
+*/
+
+nav {
+ height: 80px;
+ display: flex; 
 }
 
 .nav__container {
@@ -92,6 +120,11 @@ button:active {
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+}
+
+.logo {
+  width: 160px;
+  padding: 0;
 }
 
 .nav__link {
@@ -109,7 +142,7 @@ button:active {
 
 .nav__link--primary {
   border: 2px solid #7342d6;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .nav__link--primary:hover {
@@ -119,6 +152,7 @@ button:active {
 .btn__menu {
   background-color: transparent;
   font-size: 40px;
+  text-align: center;
   border: none;
   color: #7342d6;
   display: none;
@@ -126,36 +160,44 @@ button:active {
 
 .menu__backdrop {
   position: absolute;
-  background-color: #242424;
+  background-color: rgba(40, 40, 40, 0.9);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 99;
+  z-index: 3;
   display: flex;
-  align-items: center;
   justify-content: center;
-  visibility: hidden;
+  align-items: center;
   transition: all 300ms ease;
   opacity: 0;
-  transform: translate(100%);
+  visibility: hidden;
+}
+
+.menu--open .menu__backdrop {
+  opacity: 1;
+  visibility: visible;
+  display: flex;
 }
 
 .menu--open {
   max-height: 100vh;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
-.menu--open .menu__backdrop {
-  visibility: visible !important;
-  opacity: 1;
-  transform: translate(0);
+.btn__menu--close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  padding: 8px;
+  color: white;
 }
 
 .menu__links {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .menu__list {
@@ -163,28 +205,15 @@ button:active {
 }
 
 .menu__link {
-  color: white;
   font-size: 40px;
-}
-
-.btn__menu--close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  padding: 8px;
   color: white;
 }
-
 
 /* 
 
-LANDING
+LANDING 
 
 */
-
-#landing {
-  background-color: rgba(115, 66, 214, 0.1)
-}
 
 header {
   height: calc(100vh - 80px);
@@ -194,6 +223,7 @@ header {
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
+  padding: 20px 0;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -208,31 +238,9 @@ header {
 
 .header__img--wrapper {
   padding: 20px;
-
-  /* Added this after the tutorial to 
-  show it over the wave on larger screens */
-  z-index: 100;
+  z-index: 2;
 }
 
-.container {
-  padding: 56px 0;
-}
-
-.row {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.row__column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.no-cursor {
-  cursor: not-allowed;
-}
 /* 
 
 HIGHLIGHTS 
@@ -241,15 +249,13 @@ HIGHLIGHTS
 
 #highlights {
   position: relative;
-  max-width: 100vw;
 }
 
-#highlights:after,
-#highlights:before {
+#highlights:before, #highlights:after {
   background: url('assets/wave.svg');
   content: "";
   position: absolute;
-  width: 101vw;
+  width: 100vw;
   height: 12vw;
   left: 0;
   z-index: 1;
@@ -258,30 +264,31 @@ HIGHLIGHTS
 }
 
 #highlights:before {
-  transform: translateY(-100%);
   top: 1px;
+  transform: translateY(-100%);
 }
 
 #highlights:after {
-  transform: translateY(100%) rotate(180deg);
   bottom: 1px;
+  transform: translateY(100%) rotate(180deg);
 }
+
 
 .highlight__wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap
 }
 
 .highlight {
   padding: 0 24px;
   width: calc(100% / 3);
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  text-align: center; 
 }
 
 .highlight__para {
-  text-align: center;
   max-width: 280px;
 }
 
@@ -291,9 +298,9 @@ HIGHLIGHTS
   width: 100px;
   height: 100px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  align-items: center;
+  border-radius: 8px;
   font-size: 32px;
   margin-bottom: 24px;
 }
@@ -301,8 +308,8 @@ HIGHLIGHTS
 .highlight__subtitle {
   font-size: 20px;
   margin-bottom: 16px;
-  text-align: center;
 }
+
 
 /* 
 
@@ -327,11 +334,7 @@ FEATURES
 
 .book__img {
   max-height: 380px;
-  transition: all 300ms ease;
-  cursor: not-allowed;
-  /* Added after tutorial to maintain image aspect ratio */
-  object-fit: contain;
-  object-position: left;
+  cursor: no-drop;
 }
 
 .book__img--wrapper {
@@ -339,6 +342,7 @@ FEATURES
   border-radius: 4px;
   overflow: hidden;
   display: flex;
+  /* display flex here makes the child(which is the book img here) fill its parent container*/
 }
 
 .book:hover .book__img {
@@ -356,8 +360,13 @@ FEATURES
 }
 
 .book__ratings {
-  margin-bottom: 8px;
+  font-size: 18px;
+  margin-bottom:8px;
   color: #fabf2a;
+}
+
+.book__price {
+  font-size: 18px;
 }
 
 .book__price--normal {
@@ -366,9 +375,10 @@ FEATURES
   color: #bfbfbf;
 }
 
+
 /* 
 
-EXPLORE
+EXPLORE 
 
 */
 
@@ -376,7 +386,8 @@ EXPLORE
   background-color: rgba(115, 66, 214, 0.1);
 }
 
-/* 
+
+/*
 
 FOOTER
 
@@ -460,6 +471,14 @@ select {
   color: #7342d6;
 }
 
+.books__loading--spinner{
+  display: none !important;
+}
+
+.books__loading .books__loading--spinner {
+  display:block !important;
+}
+
 .fa-spinner {
   animation: rotate 600ms infinite linear;
 }
@@ -474,45 +493,45 @@ select {
   }
 }
 
+
 /* SMALL PHONES, TABLETS, LARGE SMARTPHONES */
 @media (max-width: 768px) {
-  .header__description {
-    padding: 0 24px;
+  .header__description{
+      padding: 0 24px;
   }
 
   h1 {
-    font-size: 40px;
+      font-size: 40px;
   }
 
   h2 {
-    font-size: 26px;
+      font-size: 26px;
   }
 
   button {
-    font-size: 18px;
+      font-size: 18px;
   }
 
   .book {
-    width: 50%;
+      width: 50%;
   }
 }
 
-
-/* SMALL PHONES, LARGE SMARTPHONES */
+/* SMALL PHONES, TABLETS, LARGE SMARTPHONES */
 @media (max-width: 550px) {
-  .btn__menu {
-    display: block;
+  .nav__links {
+      display: none;
   }
 
-  .nav__links {
-    display: none;
+  .btn__menu {
+      display: flex;
   }
 
   .highlight {
-    width: 100%;
+      width: 100%;
   }
 
   .highlight:not(:last-child) {
-    margin-bottom: 24px;
+      margin-bottom: 24px;
   }
 }
